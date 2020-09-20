@@ -16,11 +16,15 @@ jobs:
           environmentID: 98798-a974f882-8ecg0-4c80-9901-a583778393987a
       - run: npm install -g newman 
       - run: npm install -g newman-reporter-htmlextra 
-      - run: newman run "https://www.getpostman.com/collections/e75bdf5e97c5a68da133" -r htmlextra --reporter-htmlextra-title "Automated Test Report - Postman echo"
+      - run: mkdir -p testResults   
+      - run: newman run "https://www.getpostman.com/collections/e75bdf5e97c5a68da133" -r htmlextra --reporter-htmlextra-title "Automated Test Report - Postman echo" > testResults/TestReport.html
                 
+     
+              
 
       - name: upload
         uses: actions/upload-artifact@master
         with:
          name: my-artifact
-         path: /newman
+         path: testResults
+     
